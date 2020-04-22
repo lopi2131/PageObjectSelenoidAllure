@@ -87,6 +87,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <browser>chrome</browser>
+                        <options>--headless</options>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
