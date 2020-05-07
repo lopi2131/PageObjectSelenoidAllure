@@ -12,7 +12,6 @@ public enum Browsers {
     CHROME {
         public WebDriver create(){
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments(System.getProperty("options"));
             WebDriverManager.chromedriver().setup();
             return new ChromeDriver(chromeOptions);
         }
@@ -25,7 +24,6 @@ public enum Browsers {
     FIREFOX {
         public WebDriver create() {
             FirefoxOptions firefoxOptions = new FirefoxOptions();
-            firefoxOptions.addArguments(System.getProperty("options"));
             WebDriverManager.firefoxdriver().setup();
             return new FirefoxDriver(firefoxOptions);
         }

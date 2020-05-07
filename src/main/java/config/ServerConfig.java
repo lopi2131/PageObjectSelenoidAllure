@@ -12,4 +12,7 @@ public interface ServerConfig extends Config {
     @Key("title")
     String title();
 
+    @Key("cookie")
+    String cookie();
+
 }
