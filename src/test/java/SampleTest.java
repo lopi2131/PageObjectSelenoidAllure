@@ -37,8 +37,8 @@ public class SampleTest {
         driver.get(cfg.url());
         logger.info("Открыта страница Яндекс.Маркет");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Cookie cookie = new Cookie.Builder("Otus", cfg.cookie()).domain("market.yandex.ru").build();
-        driver.manage().addCookie(cookie);
+        Cookie cookies = new Cookie.Builder("Otus", cfg.cookie()).domain("market.yandex.ru").build();
+        driver.manage().addCookie(cookies);
 
         Actions builder = new Actions(driver);
 
@@ -123,11 +123,11 @@ public class SampleTest {
         logger.info("Отсутствует позиция 'Операционная система'");
     }
 
-    public WebElement search(String locator1, String locator2) {
+    public WebElement search(String locat1, String locat2) {
         try {
-            return driver.findElement(By.xpath(locator1));
+            return driver.findElement(By.xpath(locat1));
         } catch (Exception e) {
-            return driver.findElement(By.xpath(locator2));
+            return driver.findElement(By.xpath(locat2));
         }
     }
 
