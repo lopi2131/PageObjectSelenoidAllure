@@ -15,4 +15,10 @@ public interface ServerConfig extends Config {
     @Key("cookie")
     String cookie();
 
+    @Key("email")
+    String email();
+
+    @Key("password")
+    String password();
+
 }
