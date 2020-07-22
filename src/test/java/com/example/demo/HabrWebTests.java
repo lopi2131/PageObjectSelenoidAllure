@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import org.openqa.selenium.WebDriver;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
@@ -9,29 +7,10 @@ import utils.BaseTest;
 
 public class HabrWebTests extends BaseTest {
 
-    @Autowired
-    public MainPage mainPage;
-
-    @Autowired
-    public CompaniesPage companiesPage;
-
-    @Autowired
-    public SiteInformPage siteInformPage;
-
-    @Autowired
-    public SearchPage searchPage;
-
-    @Autowired
-    public ManagementPage management;
-
-    @Autowired
-    public SignUpPage signUpPage;
-
-    @Autowired
-    public LogInPage logInPage;
-
     @Test
     public void checkSearchResult() {
+        MainPage mainPage = new MainPage(driver.get());
+        CompaniesPage companiesPage = new CompaniesPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus();
@@ -40,6 +19,8 @@ public class HabrWebTests extends BaseTest {
 
     @Test
     public void checkLocation() {
+        MainPage mainPage = new MainPage(driver.get());
+        CompaniesPage companiesPage = new CompaniesPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -50,6 +31,8 @@ public class HabrWebTests extends BaseTest {
 
     @Test
     public void checkQaLead() {
+        MainPage mainPage = new MainPage(driver.get());
+        CompaniesPage companiesPage = new CompaniesPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -60,6 +43,8 @@ public class HabrWebTests extends BaseTest {
 
     @Test
     public void checkVacancy() {
+        MainPage mainPage = new MainPage(driver.get());
+        CompaniesPage companiesPage = new CompaniesPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -71,6 +56,8 @@ public class HabrWebTests extends BaseTest {
 
     @Test
     public void checkTitle() {
+        MainPage mainPage = new MainPage(driver.get());
+        SiteInformPage siteInformPage = new SiteInformPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -83,6 +70,8 @@ public class HabrWebTests extends BaseTest {
 
     @Test
     public void checkSearchResultContainsOtus() {
+        MainPage mainPage = new MainPage(driver.get());
+        SearchPage searchPage = new SearchPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -96,6 +85,8 @@ public class HabrWebTests extends BaseTest {
 
     @Test
     public void checkHubContainsOtus() {
+        MainPage mainPage = new MainPage(driver.get());
+        SearchPage searchPage = new SearchPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -111,6 +102,8 @@ public class HabrWebTests extends BaseTest {
 
     @Test
     public void checkCountEmployee() {
+        MainPage mainPage = new MainPage(driver.get());
+        SearchPage searchPage = new SearchPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -126,6 +119,8 @@ public class HabrWebTests extends BaseTest {
 
     @Test
     public void checkEmployeeSubscribe() {
+        MainPage mainPage = new MainPage(driver.get());
+        SearchPage searchPage = new SearchPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -142,6 +137,8 @@ public class HabrWebTests extends BaseTest {
 
     @Test
     public void checkInterfaceLang() {
+        MainPage mainPage = new MainPage(driver.get());
+        SearchPage searchPage = new SearchPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -159,6 +156,8 @@ public class HabrWebTests extends BaseTest {
 
     @Test
     public void checkTabLang() {
+        MainPage mainPage = new MainPage(driver.get());
+        ManagementPage managementPage = new ManagementPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -172,11 +171,13 @@ public class HabrWebTests extends BaseTest {
                 .moveToOtusUser()
                 .setLanguage()
                 .moveToManagement();
-        Assert.assertTrue(management.checkTabLang().contains("articles"), "Проверка языка вкладки");
+        Assert.assertTrue(managementPage.checkTabLang().contains("articles"), "Проверка языка вкладки");
     }
 
     @Test
     public void checkBtn() {
+        MainPage mainPage = new MainPage(driver.get());
+        SignUpPage signUpPage = new SignUpPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()
@@ -192,11 +193,13 @@ public class HabrWebTests extends BaseTest {
                 .moveToManagement()
                 .moveToReg();
         Assert.assertTrue(signUpPage.checkTitle().toLowerCase().contains("registration"), "Проверка заголовка");
-        Assert.assertFalse(signUpPage.checkSignUpBtn(), "Проверка, что кнопка неаквтина, если не заполнены все поля");
+        Assert.assertFalse(signUpPage.checkSignUpBtn(), "Проверка, что кнопка неактивна, если не заполнены все поля");
     }
 
     @Test
     public void checkTitleLogIn() {
+        MainPage mainPage = new MainPage(driver.get());
+        LogInPage logInPage = new LogInPage(driver.get());
         mainPage.open()
                 .moveToCompanies()
                 .findOtus()

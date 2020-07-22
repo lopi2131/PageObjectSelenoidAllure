@@ -1,46 +1,42 @@
 package utils;
 
-import config.SpringConfig;
-import factory.WebDriverFactory;
-import org.openqa.selenium.WebDriver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-@ContextConfiguration(classes = {SpringConfig.class})
-public class BaseTest extends AbstractTestNGSpringContextTests {
+public class BaseTest {
 
-    @Autowired
-    protected WebDriverFactory factory;
-
-    private WebDriver driver;
+    private Logger logger = LogManager.getLogger(BaseTest.class);
+    protected ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
 
     @BeforeMethod
     public void setUp() throws Exception {
-        driver = factory.getObject();
-        if (driver != null) {
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            driver.manage().window().maximize();
+        driver.set(Browsers.valueOf(System.getProperty("browser").toUpperCase()).create());
+        logger.info("Драйвер поднят");
 
+        if (driver != null) {
+            getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            getDriver().manage().window().maximize();
         }
     }
 
-   /* @AfterMethod
-    public void tearDown() {
-        *//*if (driver != null) {
-            driver.quit();
-        }*//*
-        driver.manage().deleteAllCookies();
-    }*/
+    public RemoteWebDriver getDriver(){
+        return driver.get();
+    }
 
-    /*@AfterMethod
-    public void cleanUp() {
-        driver.manage().deleteAllCookies();
-    }*/
+    @AfterMethod
+    public void tearDown() {
+        getDriver().quit();
+    }
+
+    @AfterClass
+    void terminate () {
+        //Remove the ThreadLocalMap element
+        driver.remove();
+    }
 }

@@ -1,14 +1,12 @@
 package pages;
 
-import com.example.demo.HabrWeb;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class ManagementPage extends AbstractPage {
-    private Logger logger = LogManager.getLogger(HabrWeb.class);
+    private Logger logger = LogManager.getLogger(ManagementPage.class);
 
     private By articles = By.xpath(".//h3[contains(text(),'Articles')]");
     private By signUpBtn = By.xpath("//a[@class='btn btn_medium btn_navbar_registration']");

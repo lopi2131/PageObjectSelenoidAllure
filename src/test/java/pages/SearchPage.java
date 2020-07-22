@@ -1,10 +1,8 @@
 package pages;
 
-import com.example.demo.HabrWeb;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class SearchPage extends AbstractPage {
-    private Logger logger = LogManager.getLogger(HabrWeb.class);
+    private Logger logger = LogManager.getLogger(SearchPage.class);
 
     private By firstPost = By.xpath(".//li[@class='content-list content-list_posts shortcuts_items']");
     private By hubs = By.xpath(".//h3[contains(text(),'Хабы и компании')]|.//h3[contains(text(),'Hubs and companies')]");
@@ -26,7 +24,7 @@ public class SearchPage extends AbstractPage {
     private By engInterf = By.xpath("//label[contains(text(),'English')]");
     private By saveBtn = By.xpath("//button[@class='btn btn_blue btn_huge btn_full-width js-popup_save_btn']");
     private By bookmarks = By.xpath("//h3[contains(text(),'Bookmarks')]");
-    private By management = By.xpath("//a[contains(text(),'Management')]");
+    private By management = By.xpath(".//a[contains(text(),'Management')]|.//a[contains(text(),'Менеджмент')]");
 
     public ManagementPage moveToManagement(){
         WebElement element = new WebDriverWait(driver, 5)
