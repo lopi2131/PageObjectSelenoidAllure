@@ -1,6 +1,7 @@
 package pages;
 
 import config.ServerConfig;
+import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +23,7 @@ public class MainPage extends AbstractPage{
     public MainPage(RemoteWebDriver driver) {super(driver);}
 
 
+    @Step("Открыта страница Хабр")
     public MainPage open() {
         driver.get(cfg.url());
         logger.info("Открыта страница Хабр");
@@ -29,6 +31,7 @@ public class MainPage extends AbstractPage{
         return this;
     }
 
+    @Step("Переход в компании")
     public CompaniesPage moveToCompanies() {
         WebElement company = (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(companies));

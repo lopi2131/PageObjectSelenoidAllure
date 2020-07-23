@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -17,12 +18,14 @@ public class SiteInformPage extends AbstractPage {
     private By searchButton = By.xpath("//button[@id='search-form-btn']");
     private By searchField = By.xpath("//input[@id='search-form-field']");
 
+    @Step("Проверка заголовка")
     public String checkTitle(){
         logger.info("Проверка заголовка");
 
         return driver.findElement(title).getText();
     }
 
+    @Step("Поиск записей OTUS'а")
     public SearchPage searchOtusNotes(){
         WebElement searchBtn = (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(searchButton));

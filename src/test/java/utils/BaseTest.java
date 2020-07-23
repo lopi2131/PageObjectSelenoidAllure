@@ -3,9 +3,11 @@ package utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.AbstractPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,7 +32,11 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(Object[] params, ITestResult result) {
+        if (!result.isSuccess()) {
+            AbstractPage.attachScreenShot(getDriver());
+        }
+        logger.info("Закрытие драйвера");
         getDriver().quit();
     }
 

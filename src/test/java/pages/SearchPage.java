@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -26,6 +27,7 @@ public class SearchPage extends AbstractPage {
     private By bookmarks = By.xpath("//h3[contains(text(),'Bookmarks')]");
     private By management = By.xpath(".//a[contains(text(),'Management')]|.//a[contains(text(),'Менеджмент')]");
 
+    @Step("Переход во вкладку Management")
     public ManagementPage moveToManagement(){
         WebElement element = new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(management));
@@ -36,6 +38,7 @@ public class SearchPage extends AbstractPage {
     }
 
 
+    @Step("Проверка заголовка первого поста")
     public String checkFirstPost() {
         WebElement element = new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(firstPost));
@@ -45,6 +48,7 @@ public class SearchPage extends AbstractPage {
         return posts.get(0).getText();
     }
 
+    @Step("Проверка языка интерфейса")
     public String checkInterfaceLang(){
         logger.info("Проверка языка интерфейса");
         Boolean langInt = (new WebDriverWait(driver, 5))
@@ -54,6 +58,7 @@ public class SearchPage extends AbstractPage {
         return driver.findElement(bookmarks).getText().toLowerCase();
     }
 
+    @Step("Смена языка")
     public SearchPage setLanguage() {
         WebElement lang = (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(languageForm));
@@ -68,6 +73,7 @@ public class SearchPage extends AbstractPage {
         return new SearchPage(driver);
     }
 
+    @Step("Переход в 'Хабы и Компании'")
     public SearchPage moveToHub() {
         WebElement hub = (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(hubs));
@@ -77,6 +83,7 @@ public class SearchPage extends AbstractPage {
         return new SearchPage(driver);
     }
 
+    @Step("Переход в 'Пользователи'")
     public SearchPage moveToUsers() {
         WebElement user = (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(usersButn));
@@ -86,6 +93,7 @@ public class SearchPage extends AbstractPage {
         return new SearchPage(driver);
     }
 
+    @Step("Переход в 'OTUS'")
     public SearchPage moveToOtusUser() {
         WebElement otusUser = (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(vvzOtus));
@@ -95,18 +103,21 @@ public class SearchPage extends AbstractPage {
         return new SearchPage(driver);
     }
 
+    @Step("Проверка подписок")
     public String checkSubs() {
         logger.info("Проверка подписок");
 
         return driver.findElement(subs).getText();
     }
 
+    @Step("Проверка количества пользователей")
     public int checkUsersCount() {
         logger.info("Проверка количества пользователей");
 
         return driver.findElements(users).size();
     }
 
+    @Step("Проверка наличия блога OTUS")
     public String checkOtusBlog() {
         logger.info("Проверка наличия блога OTUS");
 

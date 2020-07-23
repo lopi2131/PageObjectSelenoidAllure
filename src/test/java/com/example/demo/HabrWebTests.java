@@ -1,13 +1,19 @@
 package com.example.demo;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.BaseTest;
 
+@Epic("Тестирование UI сайта Habr.com")
 public class HabrWebTests extends BaseTest {
 
-    @Test
+    @Test(description = "Проверка результатов поиска")
+    @Feature("Поиск компаний")
+    @Owner("Курдюков В. С.")
     public void checkSearchResult() {
         MainPage mainPage = new MainPage(driver.get());
         CompaniesPage companiesPage = new CompaniesPage(driver.get());
@@ -17,7 +23,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertEquals(companiesPage.checkSearchResult(), "OTUS", "Проверка результатов поиска");
     }
 
-    @Test
+    @Test(description = "Проверка локации и что список не пустой")
+    @Feature("Описание компании")
+    @Owner("Курдюков В. С.")
     public void checkLocation() {
         MainPage mainPage = new MainPage(driver.get());
         CompaniesPage companiesPage = new CompaniesPage(driver.get());
@@ -29,7 +37,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertNotNull(companiesPage.checkContentList(), "Проверка, что список не пустой");
     }
 
-    @Test
+    @Test(description = "Проверка ФИО QA Lead")
+    @Feature("Просмотр сотрудника компании")
+    @Owner("Курдюков В. С.")
     public void checkQaLead() {
         MainPage mainPage = new MainPage(driver.get());
         CompaniesPage companiesPage = new CompaniesPage(driver.get());
@@ -41,7 +51,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertTrue(companiesPage.checkQaLead().contains("Семён Вяземский"), "Проверка ФИО QA Lead");
     }
 
-    @Test
+    @Test(description = "Проверка отсутствия открытых вакансий")
+    @Feature("Вакансии компании")
+    @Owner("Курдюков В. С.")
     public void checkVacancy() {
         MainPage mainPage = new MainPage(driver.get());
         CompaniesPage companiesPage = new CompaniesPage(driver.get());
@@ -54,7 +66,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertTrue(companiesPage.checkVacanciesListNull().contains("нет открытых вакансий") || companiesPage.checkVacanciesListNull().contains("The company has no open vacancies on") , "Проверка отсутствия открытых вакансий");
     }
 
-    @Test
+    @Test(description = "Проверка заголовка страницы")
+    @Feature("Устройство сайта")
+    @Owner("Курдюков В. С.")
     public void checkTitle() {
         MainPage mainPage = new MainPage(driver.get());
         SiteInformPage siteInformPage = new SiteInformPage(driver.get());
@@ -68,7 +82,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertTrue(siteInformPage.checkTitle().contains("Информация") || siteInformPage.checkTitle().contains("Info"), "Проверка заголовка страницы");
     }
 
-    @Test
+    @Test(description = "Проверка, что результат поиска содержит текст OTUS")
+    @Feature("Поиск записей")
+    @Owner("Курдюков В. С.")
     public void checkSearchResultContainsOtus() {
         MainPage mainPage = new MainPage(driver.get());
         SearchPage searchPage = new SearchPage(driver.get());
@@ -83,7 +99,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertTrue(searchPage.checkFirstPost().toLowerCase().contains("otus"), "Проверка, что результат поиска содержит текст OTUS");
     }
 
-    @Test
+    @Test(description = "Проверка, что в Хабах есть OTUS")
+    @Feature("Поиск хабов")
+    @Owner("Курдюков В. С.")
     public void checkHubContainsOtus() {
         MainPage mainPage = new MainPage(driver.get());
         SearchPage searchPage = new SearchPage(driver.get());
@@ -100,7 +118,9 @@ public class HabrWebTests extends BaseTest {
 
     }
 
-    @Test
+    @Test(description = "Проверка количества сотрудников OTUS")
+    @Feature("Сотрудники компании")
+    @Owner("Курдюков В. С.")
     public void checkCountEmployee() {
         MainPage mainPage = new MainPage(driver.get());
         SearchPage searchPage = new SearchPage(driver.get());
@@ -117,7 +137,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertEquals(searchPage.checkUsersCount(), 6, "Проверка количества сотрудников OTUS");
     }
 
-    @Test
+    @Test(description = "Проверка, что сотрудник подписан на блог OTUS")
+    @Feature("Подписки сотрудников")
+    @Owner("Курдюков В. С.")
     public void checkEmployeeSubscribe() {
         MainPage mainPage = new MainPage(driver.get());
         SearchPage searchPage = new SearchPage(driver.get());
@@ -135,7 +157,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertEquals(searchPage.checkSubs(), "OTUS. Онлайн-образование", "Проверка, что сотрудник подписан на блог OTUS");
     }
 
-    @Test
+    @Test(description = "Проверка языка интерфейса")
+    @Feature("Язык интерфейса")
+    @Owner("Курдюков В. С.")
     public void checkInterfaceLang() {
         MainPage mainPage = new MainPage(driver.get());
         SearchPage searchPage = new SearchPage(driver.get());
@@ -154,7 +178,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertTrue(searchPage.checkInterfaceLang().contains("bookmarks"), "Проверка языка интерфейса");
     }
 
-    @Test
+    @Test(description = "Проверка языка вкладки")
+    @Feature("Язык интерфейса")
+    @Owner("Курдюков В. С.")
     public void checkTabLang() {
         MainPage mainPage = new MainPage(driver.get());
         ManagementPage managementPage = new ManagementPage(driver.get());
@@ -174,7 +200,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertTrue(managementPage.checkTabLang().contains("articles"), "Проверка языка вкладки");
     }
 
-    @Test
+    @Test(description = "Проверка заголовка и что кнопка неактивна, если не заполнены все поля")
+    @Feature("Регистрация")
+    @Owner("Курдюков В. С.")
     public void checkBtn() {
         MainPage mainPage = new MainPage(driver.get());
         SignUpPage signUpPage = new SignUpPage(driver.get());
@@ -196,7 +224,9 @@ public class HabrWebTests extends BaseTest {
         Assert.assertFalse(signUpPage.checkSignUpBtn(), "Проверка, что кнопка неактивна, если не заполнены все поля");
     }
 
-    @Test
+    @Test(description = "Проверка заголовка")
+    @Feature("Авторизация")
+    @Owner("Курдюков В. С.")
     public void checkTitleLogIn() {
         MainPage mainPage = new MainPage(driver.get());
         LogInPage logInPage = new LogInPage(driver.get());

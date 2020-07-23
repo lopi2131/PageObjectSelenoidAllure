@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -15,6 +16,7 @@ public class SignUpPage extends AbstractPage{
     private By regBtn = By.xpath("//button[@id='registration_button']");
     private By logIn = By.xpath(".//a[contains(text(),'Log in')]");
 
+    @Step("Переход к экрану авторизации")
     public LogInPage moveToLogIn(){
         driver.findElement(logIn).click();
         logger.info("Переход к экрану авторизации");
@@ -22,12 +24,14 @@ public class SignUpPage extends AbstractPage{
         return new LogInPage(driver);
     }
 
+    @Step("Проверка заголовка")
     public String checkTitle(){
         logger.info("Проверка заголовка");
 
         return driver.findElement(title).getText();
     }
 
+    @Step("Проверка, что кнопка неаквтина, если не заполнены все поля")
     public Boolean checkSignUpBtn(){
         driver.findElement(email).sendKeys("test@gmail.com");
         driver.findElement(userName).sendKeys("test");

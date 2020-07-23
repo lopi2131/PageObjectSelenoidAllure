@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -26,16 +27,17 @@ public class CompaniesPage extends AbstractPage {
         super(driver);
     }
 
-
-    public CompaniesPage findOtus(){
+    @Step("Поиск компании OTUS")
+    public CompaniesPage findOtus() {
         driver.findElement(findCompany).sendKeys("otus");
         logger.info("Поиск компании OTUS");
 
         return new CompaniesPage(driver);
     }
 
-    public CompaniesPage openOtus(){
-        WebElement otus = (new WebDriverWait(driver,5))
+    @Step("Переход в OTUS")
+    public CompaniesPage openOtus() {
+        WebElement otus = (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(otusBlog));
         otus.click();
         logger.info("Переход в OTUS");
@@ -43,7 +45,8 @@ public class CompaniesPage extends AbstractPage {
         return new CompaniesPage(driver);
     }
 
-    public CompaniesPage moveToEmployees(){
+    @Step("Переход в Сотрудники")
+    public CompaniesPage moveToEmployees() {
         WebElement employee = (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(employees));
         employee.click();
@@ -52,7 +55,8 @@ public class CompaniesPage extends AbstractPage {
         return new CompaniesPage(driver);
     }
 
-    public CompaniesPage moveToVacancies(){
+    @Step("Переход в вакансии")
+    public CompaniesPage moveToVacancies() {
         WebElement vacancy = (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(vacancies));
         vacancy.click();
@@ -61,7 +65,8 @@ public class CompaniesPage extends AbstractPage {
         return new CompaniesPage(driver);
     }
 
-    public SiteInformPage moveToSiteInform(){
+    @Step("Переход в 'Устройство сайта'")
+    public SiteInformPage moveToSiteInform() {
         WebElement siteInformation = (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(siteInform));
         siteInformation.click();
@@ -70,33 +75,39 @@ public class CompaniesPage extends AbstractPage {
         return new SiteInformPage(driver);
     }
 
-    public String checkVacanciesListNull(){
+    @Step("Проверка, что список вакансий пуст")
+    public String checkVacanciesListNull() {
         logger.info("Проверка, что список вакансий пуст");
 
         return driver.findElement(vacanciesNull).getText();
     }
 
+    @Step("Проверка QA Lead")
     public String checkQaLead() {
         logger.info("Проверка QA Lead");
 
         return driver.findElement(svvyazemsky).getText();
     }
 
-    public int checkContentList(){
+    @Step("Проверка списка публикаций")
+    public int checkContentList() {
         logger.info("Проверка списка публикаций");
 
         return driver.findElements(contentList).size();
     }
 
-    public String checkSearchResult(){
+    @Step("Проверка результата поиска")
+    public String checkSearchResult() {
         logger.info("Проверка результата поиска");
 
         return driver.findElement(otusBlog).getText();
     }
 
+    @Step("Проверка расположения")
     public String checkLocation() {
         logger.info("Проверка расположения");
 
-        return driver.findElement(location).getText();}
+        return driver.findElement(location).getText();
+    }
 
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -10,6 +11,7 @@ public class LogInPage extends AbstractPage{
 
     private By title = By.xpath("//div[@class='shadow-box__title']");
 
+    @Step("Првоерка заголовка")
     public String checkTitle(){
         logger.info("Првоерка заголовка");
 
