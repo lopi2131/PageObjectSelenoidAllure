@@ -9,7 +9,7 @@ import pages.*;
 import utils.BaseTest;
 
 @Epic("Тестирование UI сайта Habr.com")
-public class HabrWebTests extends BaseTest {
+public class HabrWebTest extends BaseTest {
 
     @Test(description = "Проверка результатов поиска")
     @Feature("Поиск компаний")

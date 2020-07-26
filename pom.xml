@@ -40,7 +40,6 @@
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>7.1.0</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.influxdb</groupId>
@@ -72,31 +71,10 @@
 			<artifactId>slf4j-nop</artifactId>
 			<version>1.7.13</version>
 		</dependency>
-		<dependency>
-			<groupId>ru.stqa.selenium</groupId>
-			<artifactId>webdriver-factory</artifactId>
-			<version>4.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>7.1.0</version>
-			<scope>compile</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>io.qameta.allure</groupId>
 				<artifactId>allure-maven</artifactId>
@@ -122,6 +100,9 @@
 					<systemPropertyVariables>
 						<browser>chrome</browser>
 					</systemPropertyVariables>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
 				</configuration>
 				<dependencies>
 					<dependency>

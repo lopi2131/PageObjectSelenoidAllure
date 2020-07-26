@@ -2,7 +2,7 @@
 <suite name="Parallel test suite" parallel="methods" thread-count="3">
     <test name="Regression Habr">
         <classes>
-            <class name="com.example.demo.HabrWebTests"/>
+            <class name="com.example.demo.HabrWebTest"/>
         </classes>
     </test>
 </suite>
