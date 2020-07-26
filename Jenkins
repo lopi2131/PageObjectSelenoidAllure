@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "It's Build"
-                git credentialsId: 'ce671b7f-e0b8-41c6-89d6-bbeeb9921152', url: 'https://github.com/lopi2131/PageObjectSelenoidAllure' 
+                git credentialsId: 'ce671b7f-e0b8-41c6-89d6-bbeeb9921152', url: 'https://github.com/lopi2131/PageObjectSelenoidAllure'
                 echo "Stop build"
             }
         }
@@ -22,12 +22,13 @@ pipeline {
             steps {
                 echo "tests run"
                 bat 'mvn test'
+	
             }
         }
     }
     post {
         always {
-	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: ${env.BRANCH} ${TEST_COUNTS,var="TYPE"} $BUILD_TIMESTAMP', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: ${env.BRANCH} ${TEST_COUNTS,var="total"} $BUILD_TIMESTAMP', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
 
       }
     }
