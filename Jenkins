@@ -24,11 +24,10 @@ pipeline {
                 bat 'mvn test'
             }
         }
-		stage('Results') {
-            steps {
-                echo "report"
-                bat "allure includeProperties: false, jdk: 'jdk', report: 'target/allure-report', results: [[path: 'allure-results']]"
-            }
+    }
+    post {
+        always {
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
         }
     }
 }
