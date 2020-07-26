@@ -17,6 +17,7 @@
 	<properties>
 		<maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
 		<aspectj.version>1.8.10</aspectj.version>
+		<allure-testng.version>2.13.5</allure-testng.version>
 	</properties>
 
 	<dependencies>
@@ -115,7 +116,7 @@
 					<systemProperties>
 						<property>
 							<name>allure.results.directory</name>
-							<value>${project.build.directory}/allure-results</value>
+							<value>${basedir}/target/allure-results</value>
 						</property>
 					</systemProperties>
 					<systemPropertyVariables>
