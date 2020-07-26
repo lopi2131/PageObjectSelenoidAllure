@@ -20,13 +20,13 @@ pipeline {
         }
 		stage('Test') {
             steps {
-                echo "tests execute"
+                echo "tests run"
                 bat 'mvn test'
             }
         }
 		stage('Results') {
             steps {
-                echo "tests execute"
+                echo "report"
                 bat "allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]"
             }
         }
