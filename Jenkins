@@ -27,7 +27,7 @@ pipeline {
 		stage('Results') {
             steps {
                 echo "report"
-                bat "allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]"
+                bat "allure includeProperties: false, jdk: 'jdk', report: 'target/allure-report', results: [[path: 'allure-results']]"
             }
         }
     }
