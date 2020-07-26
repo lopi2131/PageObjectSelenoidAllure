@@ -15,20 +15,20 @@ pipeline {
 		stage('Clean') {
             steps {
                 echo "tests execute"
-		sh 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64'
+		bat 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64'
                 sh 'mvn clean'
             }
         }
 		stage('Test') {
             steps {
                 echo "tests execute"
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 		stage('Results') {
             steps {
                 echo "tests execute"
-                sh "allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]"
+                bat "allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]"
             }
         }
     }
