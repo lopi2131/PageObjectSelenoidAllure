@@ -27,9 +27,8 @@ pipeline {
     }
     post {
         always {
-mail to: 'lopi2131@gmail.com',
-                 cc : 'ccedpeople@gamil.com'
-                subject: "SUCCESSFUL: Build ${env.JOB_NAME}", 
-                body: "Build Successful ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"        }
+	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: $GIT_BRANCH ${TEST_COUNTS,var="TYPE"}' ${BUILD_DURATION}, recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+
+      }
     }
 }
