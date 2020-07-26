@@ -42,6 +42,7 @@ public class HabrWebTest extends BaseTest {
     @Test(description = "Проверка ФИО QA Lead")
     @Feature("Просмотр сотрудника компании")
     @Owner("Курдюков В. С.")
+    @Ignore
     public void checkQaLead() {
         MainPage mainPage = new MainPage(driver.get());
         CompaniesPage companiesPage = new CompaniesPage(driver.get());
@@ -124,6 +125,7 @@ public class HabrWebTest extends BaseTest {
     @Test(description = "Проверка количества сотрудников OTUS")
     @Feature("Сотрудники компании")
     @Owner("Курдюков В. С.")
+    @Ignore
     public void checkCountEmployee() {
         MainPage mainPage = new MainPage(driver.get());
         SearchPage searchPage = new SearchPage(driver.get());
@@ -163,6 +165,7 @@ public class HabrWebTest extends BaseTest {
     @Test(description = "Проверка языка интерфейса")
     @Feature("Язык интерфейса")
     @Owner("Курдюков В. С.")
+    @Ignore
     public void checkInterfaceLang() {
         MainPage mainPage = new MainPage(driver.get());
         SearchPage searchPage = new SearchPage(driver.get());
