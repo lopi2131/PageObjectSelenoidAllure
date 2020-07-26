@@ -4,6 +4,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.BaseTest;
@@ -26,6 +27,7 @@ public class HabrWebTest extends BaseTest {
     @Test(description = "Проверка локации и что список не пустой")
     @Feature("Описание компании")
     @Owner("Курдюков В. С.")
+    @Ignore
     public void checkLocation() {
         MainPage mainPage = new MainPage(driver.get());
         CompaniesPage companiesPage = new CompaniesPage(driver.get());
@@ -85,6 +87,7 @@ public class HabrWebTest extends BaseTest {
     @Test(description = "Проверка, что результат поиска содержит текст OTUS")
     @Feature("Поиск записей")
     @Owner("Курдюков В. С.")
+    @Ignore
     public void checkSearchResultContainsOtus() {
         MainPage mainPage = new MainPage(driver.get());
         SearchPage searchPage = new SearchPage(driver.get());
