@@ -27,7 +27,7 @@ pipeline {
     }
     post {
         always {
-            emailext body: ' Название pipeline - $PROJECT_NAME 
+            emailext body: ' Название pipeline - $PROJECT_NAME, 
 	    Номе билда - Build # $BUILD_NUMBER 
 	    Статус билда- $BUILD_STATUS: 
 	    Ветка реопзитория - ${GIT_BRANCH} ,
