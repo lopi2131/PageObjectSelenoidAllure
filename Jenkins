@@ -27,7 +27,7 @@ pipeline {
     }
     post {
         always {
-	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: $GIT_BRANCH ${TEST_COUNTS,var="TYPE"} ${BUILD_DURATION}', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: $GIT_BRANCH ${TEST_COUNTS,var="TYPE"} $BUILD_TIMESTAMP', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
 
       }
     }
