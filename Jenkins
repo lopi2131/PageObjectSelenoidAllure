@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo "tests run"
                 bat 'mvn test'
-		echo "${GIT_BRANCH#*/}"
+		echo ${GIT_BRANCH#*/}
 	
             }
         }
