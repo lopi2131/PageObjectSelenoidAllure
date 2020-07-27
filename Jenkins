@@ -10,6 +10,7 @@ pipeline {
                 echo "It's Build"
                 git credentialsId: 'ce671b7f-e0b8-41c6-89d6-bbeeb9921152', url: 'https://github.com/lopi2131/PageObjectSelenoidAllure'
                 echo "Stop build"
+		env.BRANCH_NAME = git branch --show-current
             }
         }
 		stage('Clean') {
@@ -28,7 +29,7 @@ pipeline {
     }
     post {
         always {
-	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: ${BRANCH_NAME} ${currentBuild.duration}', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: $env.BRANCH_NAME ${currentBuild.duration}', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
 
       }
     }
