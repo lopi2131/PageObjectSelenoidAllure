@@ -22,14 +22,14 @@ pipeline {
             steps {
                 echo "tests run"
                 bat 'mvn test'
-		DB_ENGINE = 'git rev-parse --abbrev-ref HEAD'
+		def branchName = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
 	
             }
         }
     }
     post {
         always {
-	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: DB_ENGINE', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: branchName', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
 
       }
     }
