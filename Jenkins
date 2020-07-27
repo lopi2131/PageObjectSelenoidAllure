@@ -11,7 +11,7 @@ pipeline {
                 echo "It's Build"
                 git credentialsId: 'ce671b7f-e0b8-41c6-89d6-bbeeb9921152', url: 'https://github.com/lopi2131/PageObjectSelenoidAllure'
                 echo "Stop build"
-		env.BRANCH_NAME = git branch --show-current
+		def env.BRANCH_NAME = git branch --show-current
             }
         }
 		stage('Clean') {
