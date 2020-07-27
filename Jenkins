@@ -28,7 +28,7 @@ pipeline {
     }
     post {
         always {
-	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: git rev-parse --abbrev-ref HEAD ${TEST_COUNTS,var="total"} $BUILD_TIMESTAMP', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: git name-rev --name-only <SHA> ${TEST_COUNTS,var="total"} $BUILD_TIMESTAMP', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
 
       }
     }
