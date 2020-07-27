@@ -22,13 +22,14 @@ pipeline {
             steps {
                 echo "tests run"
                 bat 'mvn test'
+		echo "${GIT_BRANCH#*/}"
 	
             }
         }
     }
     post {
         always {
-	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: ${GIT_BRANCH#*/}', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+	emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: ', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
 
       }
     }
