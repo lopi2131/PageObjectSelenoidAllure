@@ -72,6 +72,7 @@ public class HabrWebTest extends BaseTest {
     @Test(description = "Проверка заголовка страницы")
     @Feature("Устройство сайта")
     @Owner("Курдюков В. С.")
+    @Ignore
     public void checkTitle() {
         MainPage mainPage = new MainPage(driver.get());
         SiteInformPage siteInformPage = new SiteInformPage(driver.get());
