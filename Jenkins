@@ -29,7 +29,7 @@ pipeline {
 	stage('Results') {
           steps {
              echo "Allure"
-             bat "allure includeProperties: false, jdk: 'jdk', results: [[path: 'target/allure-results']]"
+             bat 'mvn allure:serve'
               
           }
       }
