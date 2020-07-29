@@ -188,6 +188,7 @@ public class HabrWebTest extends BaseTest {
     @Test(description = "Проверка языка вкладки")
     @Feature("Язык интерфейса")
     @Owner("Курдюков В. С.")
+    @Ignore
     public void checkTabLang() {
         MainPage mainPage = new MainPage(driver.get());
         ManagementPage managementPage = new ManagementPage(driver.get());
