@@ -211,6 +211,7 @@ public class HabrWebTest extends BaseTest {
     @Test(description = "Проверка заголовка и что кнопка неактивна, если не заполнены все поля")
     @Feature("Регистрация")
     @Owner("Курдюков В. С.")
+    @Ignore
     public void checkBtn() {
         MainPage mainPage = new MainPage(driver.get());
         SignUpPage signUpPage = new SignUpPage(driver.get());
