@@ -29,7 +29,13 @@ pipeline {
 	stage('Results') {
           steps {
              echo "Allure"
-             bat 'mvn allure:serve'
+              allure([
+                    includeProperties: false,
+                    jdk: 'jdk',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'target/allure-results']]
+                ])
               
           }
       }
